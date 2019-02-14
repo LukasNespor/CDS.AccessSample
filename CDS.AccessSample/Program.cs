@@ -1,6 +1,7 @@
 ﻿using CDS.AccessSample.Code;
 using CDS.AccessSample.Models;
 using CDS.AccessSample.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,6 +16,14 @@ namespace CDS.AccessSample
         /// <returns></returns>
         static async Task Main(string[] args)
         {
+            if (!IsConfigAndArgumentsValid(args))
+            {
+                Console.WriteLine("Missing configuration values in app settings.");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                return;
+            }
+
             using (ClientContext client = new ClientContext(Config.EnvironmentName))
             {
                 await client.ConnectAsync(Config.AzureAppId, Config.UserName, Config.Password);
@@ -42,6 +51,11 @@ namespace CDS.AccessSample
 
                 var data = await client.GetEntitiesAsync<Account>(query);
             }
+        }
+
+        static bool IsConfigAndArgumentsValid(string[] args)
+        {
+            return args.Length > 0 && Config.IsValid;
         }
     }
 }
