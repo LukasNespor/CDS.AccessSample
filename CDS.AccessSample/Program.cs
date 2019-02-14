@@ -16,7 +16,7 @@ namespace CDS.AccessSample
         /// <returns></returns>
         static async Task Main(string[] args)
         {
-            if (!IsConfigAndArgumentsValid(args))
+            if (!Config.IsValid)
             {
                 Console.WriteLine("Missing configuration values in app settings.");
                 Console.WriteLine("Press any key to continue...");
@@ -51,11 +51,6 @@ namespace CDS.AccessSample
 
                 var data = await client.GetEntitiesAsync<Account>(query);
             }
-        }
-
-        static bool IsConfigAndArgumentsValid(string[] args)
-        {
-            return args.Length > 0 && Config.IsValid;
         }
     }
 }
