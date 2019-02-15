@@ -10,7 +10,7 @@ namespace CDS.AccessSample
     class Program
     {
         /// <summary>
-        /// Connect to Common Data Service for Apps and load Account entities including currency and contacts.
+        /// Connect to Common Data Service for Apps and load Sales Order entities including Sales Order Lines.
         /// </summary>
         /// <param name="args">No arguments necessary</param>
         /// <returns></returns>
@@ -30,26 +30,26 @@ namespace CDS.AccessSample
 
                 var query = new Query
                 {
-                    EntityCollection = "accounts",
+                    EntityCollection = "crcef_salesorders",
                     Select = new List<string>()
                     {
-                        "accountid",
-                        "name",
-                        "description"
+                        "crcef_salesorderid",
+                        "crcef_salesordername",
+                        "crcef_salesordernumber",
+                        "crcef_ordercreationdatetime"
                     },
                     Filter = new List<string>()
                     {
-                        "name eq 'KPCS'"
+                        "crcef_salesordername eq '3 Fazy'"
                     },
                     Expand = new List<string>()
                     {
-                        "transactioncurrencyid($select=currencyname,currencysymbol,isocurrencycode)",
-                        "crcef_AccountContacts($select=fullname,emailaddress1)" //custom relationship to Contact entity
+                        "crcef_SalesOrderLines($select=crcef_salesorderlinestatus,crcef_salesordernumber)"
                     },
-                    OrderBy = "name desc"
+                    OrderBy = "crcef_salesordernumber desc"
                 };
 
-                var data = await client.GetEntitiesAsync<Account>(query);
+                var data = await client.GetEntitiesAsync<SalesOrder>(query);
             }
         }
     }

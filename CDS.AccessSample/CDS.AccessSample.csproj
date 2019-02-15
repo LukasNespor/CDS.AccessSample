@@ -56,9 +56,8 @@
   <ItemGroup>
     <Compile Include="Code\ClientContext.cs" />
     <Compile Include="Models\Config.cs" />
-    <Compile Include="Models\Entities\Account.cs" />
-    <Compile Include="Models\Entities\Contact.cs" />
-    <Compile Include="Models\Entities\Currency.cs" />
+    <Compile Include="Models\Entities\SalesOrder.cs" />
+    <Compile Include="Models\Entities\SalesOrderLine.cs" />
     <Compile Include="Models\ODataResponse.cs" />
     <Compile Include="Models\Query.cs" />
     <Compile Include="Program.cs" />
