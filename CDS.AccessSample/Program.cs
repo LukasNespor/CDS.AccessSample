@@ -30,23 +30,24 @@ namespace CDS.AccessSample
 
                 var query = new Query
                 {
-                    EntityCollection = "crcef_salesorders",
+                    EntityCollection = "cds_salesorders",
                     Select = new List<string>()
                     {
-                        "crcef_salesorderid",
-                        "crcef_salesordername",
-                        "crcef_salesordernumber",
-                        "crcef_ordercreationdatetime"
+                        "cds_salesorderid",
+                        "cds_salesordername",
+                        "cds_salesordernumber",
+                        "cds_ordercreationdatetime",
+                        "cds_invoiceaddresscity"
                     },
                     Filter = new List<string>()
                     {
-                        "crcef_salesordername eq '3 Fazy'"
+                        "cds_salesordername eq '3 Fazy'"
                     },
                     Expand = new List<string>()
                     {
-                        "crcef_SalesOrderLines($select=crcef_salesorderlinestatus,crcef_salesordernumber)"
+                        "cds_salesorderlines($select=cds_lineamount,cds_linedescription,cds_confirmedshippingdate)"
                     },
-                    OrderBy = "crcef_salesordernumber desc"
+                    OrderBy = "cds_salesordernumber desc"
                 };
 
                 var data = await client.GetEntitiesAsync<SalesOrder>(query);

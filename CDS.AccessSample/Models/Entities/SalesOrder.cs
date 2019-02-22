@@ -6,19 +6,22 @@ namespace CDS.AccessSample.Models.Entities
 {
     public class SalesOrder
     {
-        [JsonProperty("crcef_salesorderid")]
+        [JsonProperty("cds_salesorderid")]
         public string Id { get; set; }
 
-        [JsonProperty("crcef_salesordername")]
+        [JsonProperty("cds_salesordername")]
         public string Name { get; set; }
 
-        [JsonProperty("crcef_salesordernumber")]
+        [JsonProperty("cds_salesordernumber")]
         public string OrderNumber { get; set; }
 
-        [JsonProperty("crcef_ordercreationdatetime")]
+        [JsonProperty("cds_ordercreationdatetime")]
         public DateTimeOffset OrderCreationDateTime { get; set; }
 
-        [JsonProperty("crcef_SalesOrderLines")]
+        [JsonProperty("cds_invoiceaddresscity")]
+        public string InvoiceAddressCity { get; set; }
+
+        [JsonProperty("cds_salesorderlines")]
         public List<SalesOrderLine> SalesOrderLines { get; set; }
     }
 }
